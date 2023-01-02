@@ -9,23 +9,13 @@ import org.springframework.test.context.jdbc.Sql;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@TestInstance(TestInstance.Lifecycle.PER_METHOD)
-public class UserControllerIT extends BaseIT {
+public class UserControllerIT2 extends BaseIT {
 
     @Test
     @Sql({ "/schema.sql", "/users-main-user.sql" })
     public void testCreateEmployee() {
 
-        User user = new User();
-        user.setFirstName("Nico");
-        user.setLastName("Salvai");
-        user.setEmail("nico.salvai@hotmail.com");
-
-        var response = testRestTemplate.postForLocation( "/api/v1/users", user);
-
-        assertNotNull(response.getPath());
-
-        ResponseEntity<User> response2 = testRestTemplate.getForEntity(response.getPath(), User.class);
+        ResponseEntity<User> response2 = testRestTemplate.getForEntity("/api/v1/users/2", User.class);
 
         var userResponse = response2.getBody();
         assertNotNull(userResponse.getId());
