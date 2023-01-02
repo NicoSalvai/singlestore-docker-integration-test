@@ -1,0 +1,18 @@
+services:
+  memsql:
+    container_name: memsql
+    image: memsql/cluster-in-a-box
+    environment:
+      START_AFTER_INIT: 0
+      LICENSE_KEY:
+      ROOT_PASSWORD: 123321
+    ports:
+      - "3306:3306"
+      - "8080:8080"
+    networks:
+      - memsql
+    restart: unless-stopped
+
+networks:
+  memsql:
+    driver: bridge
