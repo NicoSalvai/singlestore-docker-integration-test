@@ -15,7 +15,7 @@ public class UserControllerIT2 extends BaseIT {
     @Sql({ "/schema.sql", "/users-main-user.sql" })
     public void testCreateEmployee() {
 
-        ResponseEntity<User> response2 = testRestTemplate.getForEntity("/api/v1/users/2", User.class);
+        ResponseEntity<User> response2 = testRestTemplate.getForEntity("/api/v1/users/1", User.class);
 
         var userResponse = response2.getBody();
         assertNotNull(userResponse.getId());
